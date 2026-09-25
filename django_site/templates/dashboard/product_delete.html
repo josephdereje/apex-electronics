@@ -1,0 +1,10 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<h1>Delete {{ product.name }}?</h1>
+<p class="muted">This removes the product from the database and the public catalog.</p>
+<form method="post">
+  {% csrf_token %}
+  <button class="btn btn-primary" type="submit">Delete product</button>
+  <a class="btn btn-line" href="{% url 'dashboard_products' %}">Cancel</a>
+</form>
+{% endblock %}

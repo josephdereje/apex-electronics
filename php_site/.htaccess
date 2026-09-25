@@ -1,0 +1,10 @@
+# APEX PHP site on Apache / cPanel
+Options -Indexes
+DirectoryIndex index.php home.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^assets/(.*)$ assets/$1 [L]
+</IfModule>

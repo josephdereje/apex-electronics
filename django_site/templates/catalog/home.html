@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Mobile Accessories Built For Your Brand | APEX{% endblock %}
+{% block description %}APEX is a Guangzhou and Hong Kong OEM/ODM manufacturer of tempered glass, Bluetooth headphones, power banks and charging solutions for global export.{% endblock %}
+{% block content %}
+<section class="ads-banner" data-banner>
+  <div class="ads-track">
+    <a class="ads-slide is-active" href="{% url 'products' %}?category=tempered-glass" style="--ads-image:url('{% static 'img/banners/banner-360cc.jpg' %}')">
+      <div class="ads-copy">
+        <p class="eyebrow">Catalog campaign</p>
+        <h2>360CC Large-Arc Glass</h2>
+        <p>High-clarity full-coverage protectors with ESD anti-static coating and private-label packaging.</p>
+        <span class="btn btn-primary">Shop tempered glass</span>
+      </div>
+    </a>
+    <a class="ads-slide" href="{% url 'products' %}?category=tempered-glass" style="--ads-image:url('{% static 'img/banners/banner-privacy.jpg' %}')">
+      <div class="ads-copy">
+        <p class="eyebrow">Privacy range</p>
+        <h2>28° Anti-Peep Glass</h2>
+        <p>Retail-ready privacy film and glass with holographic packaging from the APEX catalog.</p>
+        <span class="btn btn-primary">View privacy glass</span>
+      </div>
+    </a>
+    <a class="ads-slide" href="{% url 'products' %}?category=bluetooth-headphones" style="--ads-image:url('{% static 'img/banners/banner-audio.jpg' %}')">
+      <div class="ads-copy">
+        <p class="eyebrow">Bluetooth 6.0</p>
+        <h2>TWS Earbuds. Your Colors.</h2>
+        <p>B64 to B88 models with display cases, ear-hook options and retail box artwork.</p>
+        <span class="btn btn-primary">Explore audio</span>
+      </div>
+    </a>
+    <a class="ads-slide" href="{% url 'products' %}?category=power-banks" style="--ads-image:url('{% static 'img/banners/banner-power.jpg' %}')">
+      <div class="ads-copy">
+        <p class="eyebrow">5,000–20,000 mAh</p>
+        <h2>PD + QC Power Banks</h2>
+        <p>Slim, magnetic and digital-display formats with CE, FCC and RoHS designs.</p>
+        <span class="btn btn-primary">View power banks</span>
+      </div>
+    </a>
+    <a class="ads-slide" href="{% url 'products' %}?category=chargers-cables" style="--ads-image:url('{% static 'img/banners/banner-charge.jpg' %}')">
+      <div class="ads-copy">
+        <p class="eyebrow">20–65W / global plugs</p>
+        <h2>Chargers & Cables</h2>
+        <p>Wall, car and GaN chargers plus braided Lightning, USB-C and Micro USB cables.</p>
+        <span class="btn btn-primary">View charging</span>
+      </div>
+    </a>
+  </div>
+  <div class="ads-nav">
+    <button type="button" data-banner-prev aria-label="Previous banner">‹</button>
+    <div class="ads-dots" data-banner-dots></div>
+    <button type="button" data-banner-next aria-label="Next banner">›</button>
+  </div>
+  <div class="ads-progress"><span data-banner-progress></span></div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Tempered Glass</span><span>360CC Large-Arc</span><span>28° Privacy</span><span>SuperX Membrane</span><span>Bluetooth 6.0</span><span>B60–B88 TWS</span><span>Power Banks</span><span>PD + QC</span><span>Chargers & Cables</span><span>OEM / ODM</span>
+    <span>Tempered Glass</span><span>360CC Large-Arc</span><span>28° Privacy</span><span>SuperX Membrane</span><span>Bluetooth 6.0</span><span>B60–B88 TWS</span><span>Power Banks</span><span>PD + QC</span><span>Chargers & Cables</span><span>OEM / ODM</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="container hero-grid">
+    <div class="reveal">
+      <p class="eyebrow">OEM & ODM Manufacturing · Global Export</p>
+      <h1>Mobile Accessories, Built For Your Brand</h1>
+      <p class="lead">Direct manufacturing. Flexible customization. Reliable export. APEX supplies tempered glass, Bluetooth headphones, power banks and charging solutions from Guangzhou and Hong Kong.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{% url 'products' %}">Explore Products</a>
+        <a class="btn btn-ghost" href="{% url 'oem' %}">Our OEM / ODM Services</a>
+        <a class="btn btn-ghost" href="{{ catalog_url }}" download="APEX-Company-Catalog.pdf">Download Catalog</a>
+      </div>
+      <div class="proof">
+        <div><strong data-count="4">4</strong><span>Core categories</span></div>
+        <div><strong data-count="50" data-suffix="+">50+</strong><span>Export markets</span></div>
+        <div><strong>24h</strong><span>Quote response</span></div>
+        <div><strong>100%</strong><span>Final inspection</span></div>
+      </div>
+    </div>
+    <aside class="hero-card reveal float-card">
+      <h3>Four catalog lines</h3>
+      <div class="cat-row"><span>Tempered glass</span><b>360CC · privacy · SuperX</b></div>
+      <div class="cat-row"><span>Bluetooth audio</span><b>TWS · Bluetooth 6.0</b></div>
+      <div class="cat-row"><span>Power banks</span><b>5,000–20,000 mAh</b></div>
+      <div class="cat-row"><span>Chargers & cables</span><b>20–65W · global plugs</b></div>
+    </aside>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Company catalog</p>
+      <h2>Four core categories. One export partner.</h2>
+      <p class="muted">From logo printing and custom retail packaging to full private-label development, every order passes documented quality inspection before shipment.</p>
+    </div>
+    <div class="cards-6 cards-4">
+      {% for category in categories %}
+      <a class="card reveal tilt" href="{% url 'products' %}?category={{ category.slug }}">
+        <div class="card-kicker">{{ category.eyebrow }}</div>
+        <h3>{{ category.name }}</h3>
+        <p class="muted">{{ category.summary }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">From the APEX catalog</p>
+      <h2>Featured products now in the database</h2>
+      <p class="muted">These SKUs are loaded from the company catalog and managed in the admin product list.</p>
+    </div>
+    <div class="product-grid">
+      {% for product in featured_products %}
+      <a class="product-card reveal tilt" href="{% url 'product_detail' product.slug %}">
+        <div class="thumb">{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% endif %}</div>
+        <div class="body">
+          <span class="badge">{{ product.category.name }}</span>
+          <h3>{{ product.name }}</h3>
+          <p class="muted">{{ product.short_description }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Why partner with APEX</p>
+      <h2>A partner built for international buyers.</h2>
+    </div>
+    <div class="value-grid">
+      <article class="value-card reveal"><h3>Factory-direct pricing</h3><p class="muted">No middle layers. Guangzhou manufacturing with Hong Kong export infrastructure.</p></article>
+      <article class="value-card reveal"><h3>100% inspection</h3><p class="muted">Functional and visual checks on every shipment before packing.</p></article>
+      <article class="value-card reveal"><h3>Full private label</h3><p class="muted">Product, box and manual under your brand.</p></article>
+      <article class="value-card reveal"><h3>Reliable lead times</h3><p class="muted">Samples in 3–7 days. Production in 15–30 days.</p></article>
+      <article class="value-card reveal"><h3>Consolidated shipping</h3><p class="muted">FOB / CIF / DDP across more than 50 markets.</p></article>
+      <article class="value-card reveal"><h3>One partner, four lines</h3><p class="muted">Glass, audio, power banks and charging from a single export team.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Quality control</p>
+      <h2>Incoming check. In-line QC. Final 100% test.</h2>
+    </div>
+    <div class="steps">
+      <article class="step reveal"><div class="step-num">01</div><h3>Incoming check</h3><p class="muted">Glass, cells, PCBs and housings verified against specification.</p></article>
+      <article class="step reveal"><div class="step-num">02</div><h3>In-line QC</h3><p class="muted">Station-by-station assembly checks with photo progress reporting.</p></article>
+      <article class="step reveal"><div class="step-num">03</div><h3>Final 100% test</h3><p class="muted">Function, safety and visual inspection before export packing.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="certs">
+      <div class="cert reveal">CE</div>
+      <div class="cert reveal">RoHS</div>
+      <div class="cert reveal">FCC</div>
+    </div>
+    <p class="muted reveal" style="margin-top:16px">CE, RoHS and FCC compliant designs. Documentation is available on request.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="cta reveal">
+      <div>
+        <h2>Let's build your next order together.</h2>
+        <p>Send your product requirements, target price and quantity. Our export team will reply within 24 hours.</p>
+      </div>
+      <div class="hero-actions" style="margin:0">
+        <a class="btn btn-primary" href="{% url 'contact' %}">Start Your Project</a>
+        <a class="btn btn-ghost" href="{{ catalog_url }}" download="APEX-Company-Catalog.pdf">Download Catalog</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

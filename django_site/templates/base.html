@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Mobile Accessories OEM & ODM Manufacturer | APEX{% endblock %}</title>
+  <meta name="description" content="{% block description %}APEX is a Hong Kong and Guangzhou OEM/ODM supplier of tempered glass, Bluetooth headphones, power banks and charging solutions, with custom branding, private-label packaging and worldwide shipping.{% endblock %}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="APEX">
+  <meta property="og:title" content="{% block og_title %}Mobile Accessories Built For Your Brand | APEX{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}OEM/ODM supplier of tempered glass, Bluetooth headphones, power banks and charging solutions from Guangzhou and Hong Kong.{% endblock %}">
+  <meta property="og:url" content="{{ website_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="{% url 'home' %}">
+        <img src="{% static 'img/logo.png' %}" alt="APEX logo">
+        <span>APEX</span>
+      </a>
+      <button class="menu-btn" type="button" aria-label="Open menu">Menu</button>
+      <nav class="nav">
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+        <a href="{% url 'products' %}" class="{% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'product_detail' %}active{% endif %}">Products</a>
+        <a href="{% url 'oem' %}" class="{% if request.resolver_match.url_name == 'oem' %}active{% endif %}">OEM / ODM</a>
+        <a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a>
+        <a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a>
+        <a class="btn btn-primary" href="{% url 'contact' %}">Get a Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>{% block content %}{% endblock %}</main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="{% url 'home' %}">
+          <img src="{% static 'img/logo.png' %}" alt="APEX logo">
+          <span>APEX</span>
+        </a>
+        <p>Hong Kong and Guangzhou OEM/ODM supplier of tempered glass, Bluetooth headphones, power banks, and chargers &amp; cables, produced and delivered under the customer's brand.</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <p><a href="{% url 'products' %}?category=tempered-glass">Tempered Glass</a></p>
+        <p><a href="{% url 'products' %}?category=bluetooth-headphones">Bluetooth Headphones</a></p>
+        <p><a href="{% url 'products' %}?category=power-banks">Power Banks</a></p>
+        <p><a href="{% url 'products' %}?category=chargers-cables">Chargers &amp; Cables</a></p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <p><a href="{% url 'about' %}">About APEX</a></p>
+        <p><a href="{% url 'oem' %}">OEM / ODM Services</a></p>
+        <p><a href="{% url 'contact' %}">Contact Us</a></p>
+        <p><a href="{% url 'contact' %}">Request a Quote</a></p>
+        <p><a href="{{ catalog_url }}" download="APEX-Company-Catalog.pdf">Download Catalog</a></p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Room 621, Garden Building, 368 Huanshi East Road, Yuexiu District, Guangzhou, China</p>
+        <p>H020, 3/F, Phase 2, Kwai Shing Industrial Building, 42–46 Tai Lin Pai Road, Kwai Chung, N.T., Hong Kong</p>
+        <p>+86 136 4066 6344<br>info@apextechnology.com<br><a href="{{ website_url }}">www.apextechnology.com</a></p>
+      </div>
+    </div>
+    <div class="container footer-social">
+      <p>Follow APEX</p>
+      <div class="social-tags">
+        <a class="social-tag whatsapp" href="{{ whatsapp_url }}" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 2.1 17.2L1 23l5.9-1.1A11 11 0 0 0 20.5 3.5zm-8.5 17a9 9 0 0 1-4.6-1.3l-.3-.2-3.5.6.7-3.4-.2-.3A9 9 0 1 1 12 20.5zm5-6.7c-.3-.1-1.6-.8-1.9-.9s-.4-.1-.6.1-.7.9-.8 1-.3.2-.6.1a7.4 7.4 0 0 1-2.2-1.4 8.2 8.2 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.6l.5-.6.2-.4a.5.5 0 0 0 0-.5c0-.1-.6-1.5-.8-2s-.4-.5-.6-.5h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.8 11.8 0 0 0 4.5 4 15 15 0 0 0 1.5.6 3.6 3.6 0 0 0 1.6.1 2.9 2.9 0 0 0 1.9-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3z"/></svg>
+          WhatsApp
+        </a>
+        <a class="social-tag facebook" href="{{ facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l1-3h-4V10c0-.6.4-1 1-1z"/></svg>
+          Facebook
+        </a>
+        <a class="social-tag instagram" href="{{ instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-5 3.2A3.8 3.8 0 1 1 8.2 12 3.8 3.8 0 0 1 12 8.2zm0 2A1.8 1.8 0 1 0 13.8 12 1.8 1.8 0 0 0 12 10.2zM17.2 6.6a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>
+          Instagram
+        </a>
+        <a class="social-tag linkedin" href="{{ linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 9H4V20h2.5zm.2-4.2A1.7 1.7 0 1 0 5 6.5a1.7 1.7 0 0 0 1.7-1.7zM20 20h-2.5v-5.6c0-1.6-.6-2.6-2-2.6s-1.8.9-2.1 1.8V20H11v-7.4c0-2.2-.1-4-3.1-4H4.8A3.4 3.4 0 0 1 8 6.7c2.2 0 3.7 1.4 4.3 2.8h.1c.7-1.3 2.1-2.8 4.5-2.8 3.1 0 5.1 2 5.1 6.3z"/></svg>
+          LinkedIn
+        </a>
+        <a class="social-tag wechat" href="{% url 'contact' %}" aria-label="WeChat">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 4C5.9 4 3 6.5 3 9.6c0 1.8 1 3.4 2.6 4.5L5 16.2l2.4-1.2c.7.2 1.4.3 2.1.3.3 0 .5 0 .8-.1A4.8 4.8 0 0 1 10 13.6c0-3 2.9-5.4 6.4-5.5C15.4 5.8 12.7 4 9.5 4zm1.3 2.6a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zm4.3 0a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8zM16.4 8.6c-2.9 0-5.3 2-5.3 4.5s2.4 4.5 5.3 4.5c.5 0 1.1-.1 1.6-.2l1.8.9-.4-1.5c1.2-.8 1.9-2 1.9-3.7 0-2.5-2.4-4.5-5-4.5zm-1.7 3.2a.7.7 0 1 1 0 1.4.7.7 0 0 1 0-1.4zm3.4 0a.7.7 0 1 1 0 1.4.7.7 0 0 1 0-1.4z"/></svg>
+          WeChat
+        </a>
+        <a class="social-tag email" href="{{ email_url }}" aria-label="Email">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm8 6.2L4.8 7.4h14.4zm0 1.6-8-5.2V17h16V8.6z"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+    <div class="container legal">© <span data-year>{{ current_year }}</span> APEX IMPORT AND EXPORT COMPANY LIMITED. All rights reserved.</div>
+  </footer>
+
+  <aside class="side-dock" data-dock>
+    <div class="dock-toggles">
+      <button type="button" class="dock-toggle" data-dock-open="chat">Chat</button>
+      <button type="button" class="dock-toggle" data-dock-open="blog">Blog</button>
+    </div>
+    <div class="dock-panel" data-dock-panel="chat">
+      <div class="dock-head">
+        <h3>Chat with APEX</h3>
+        <button type="button" data-dock-close aria-label="Close">×</button>
+      </div>
+      <p class="tiny">Export team in the Hong Kong time zone. Replies within 24 hours.</p>
+      <div class="dock-actions">
+        <a class="btn btn-primary" href="{{ whatsapp_url }}" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-line" href="mailto:info@apextechnology.com">Email</a>
+      </div>
+      <img class="dock-qr" src="{% static 'img/wechat-qr.png' %}" alt="WeChat QR — scan to chat">
+      <p class="tiny">WeChat / WhatsApp / phone: +86 136 4066 6344</p>
+      <form method="post" action="{% url 'quick_inquiry' %}">
+        {% csrf_token %}
+        <input class="field-input" name="name" placeholder="Your name" required>
+        <input class="field-input" name="email" type="email" placeholder="Company email" required>
+        <select class="field-input" name="product_interest">
+          {% for value, label in side_interest_choices %}
+          <option value="{{ value }}">{{ label }}</option>
+          {% endfor %}
+        </select>
+        <textarea class="field-input" name="message" rows="3" placeholder="Product, quantity, target price" required></textarea>
+        <button class="btn btn-primary" type="submit">Send message</button>
+      </form>
+    </div>
+    <div class="dock-panel" data-dock-panel="blog">
+      <div class="dock-head">
+        <h3>Catalog notes</h3>
+        <button type="button" data-dock-close aria-label="Close">×</button>
+      </div>
+      <article class="blog-item">
+        <p class="eyebrow">Glass</p>
+        <h4>360CC vs privacy vs SuperX</h4>
+        <p>Large-arc glass for flagship phones, 28° privacy for retail, and SuperX membrane when buyers need flexible full-screen film.</p>
+      </article>
+      <article class="blog-item">
+        <p class="eyebrow">Audio</p>
+        <h4>How to pick a TWS model</h4>
+        <p>Range I covers B64–B68 volume SKUs. Range II adds ear-hook B66-B. Range III is lifestyle B60 and compact B88.</p>
+      </article>
+      <article class="blog-item">
+        <p class="eyebrow">Power</p>
+        <h4>5,000 to 20,000 mAh</h4>
+        <p>PD + QC, digital display, magnetic and slim formats — add them to a mixed container with glass and audio.</p>
+      </article>
+      <article class="blog-item">
+        <p class="eyebrow">Export</p>
+        <h4>FOB, CIF or DDP</h4>
+        <p>Hong Kong assembly and banking plus Guangzhou factory speed. The team replies within 24 hours.</p>
+      </article>
+    </div>
+  </aside>
+  <script src="{% static 'js/site.js' %}"></script>
+</body>
+</html>

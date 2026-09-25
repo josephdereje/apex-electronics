@@ -1,0 +1,34 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<div class="admin-top">
+  <div>
+    <p class="eyebrow">Dashboard</p>
+    <h1>Catalog overview</h1>
+  </div>
+  <a class="btn btn-primary" href="{% url 'dashboard_product_create' %}">Upload product</a>
+</div>
+<div class="stat-grid">
+  <article class="stat"><span>Products</span><strong>{{ product_count }}</strong></article>
+  <article class="stat"><span>Live on site</span><strong>{{ active_count }}</strong></article>
+  <article class="stat"><span>Inquiries</span><strong>{{ inquiry_count }}</strong></article>
+  <article class="stat"><span>New quotes</span><strong>{{ new_inquiries }}</strong></article>
+</div>
+<div class="cards-2">
+  <article class="card">
+    <h3>Recent products</h3>
+    {% for product in recent_products %}
+      <p><a href="{% url 'dashboard_product_edit' product.pk %}">{{ product.name }}</a> · {{ product.category.name }}</p>
+    {% empty %}
+      <p class="muted">No products yet.</p>
+    {% endfor %}
+  </article>
+  <article class="card">
+    <h3>Latest inquiries</h3>
+    {% for inquiry in recent_inquiries %}
+      <p>{{ inquiry.name }} · {{ inquiry.get_product_interest_display }}</p>
+    {% empty %}
+      <p class="muted">No inquiries yet.</p>
+    {% endfor %}
+  </article>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}APEX Admin{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="admin-side">
+      <a class="brand" href="{% url 'dashboard_home' %}">
+        <img src="{% static 'img/logo.png' %}" alt="APEX">
+        <span>APEX Admin</span>
+      </a>
+      <p class="tiny">Company catalog console</p>
+      <a href="{% url 'dashboard_home' %}" class="{% if request.resolver_match.url_name == 'dashboard_home' %}active{% endif %}">Overview</a>
+      <a href="{% url 'dashboard_products' %}" class="{% if 'product' in request.resolver_match.url_name %}active{% endif %}">Product list</a>
+      <a href="{% url 'dashboard_product_create' %}">Upload product</a>
+      <a href="{% url 'dashboard_inquiries' %}" class="{% if request.resolver_match.url_name == 'dashboard_inquiries' %}active{% endif %}">Quote requests</a>
+      <a href="{% url 'products' %}" target="_blank" rel="noopener">View public catalog</a>
+      <a href="{% url 'admin_logout' %}">Sign out</a>
+    </aside>
+    <section class="admin-main">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert {% if message.tags == 'success' %}alert-ok{% else %}alert-err{% endif %}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+      {% block content %}{% endblock %}
+    </section>
+  </div>
+  <script src="{% static 'js/admin.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.sqlite
+db.sqlite3
+django_site/media/
+django_site/staticfiles/
+php_site/data/
+php_site/uploads/products/*
+!php_site/uploads/products/.gitkeep
+.env
+venv/
+.venv/

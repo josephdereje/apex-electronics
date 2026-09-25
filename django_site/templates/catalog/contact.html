@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Contact APEX | Request a Quote{% endblock %}
+{% block description %}Send product requirements, target price and quantity. APEX replies within 24 hours from Guangzhou and Hong Kong.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container reveal">
+    <p class="eyebrow">Let's build your next order together</p>
+    <h1>Contact APEX</h1>
+    <p>Send your product requirements, target price and quantity. Our export team will reply within 24 hours.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container contact-grid">
+    <aside class="quote-card reveal">
+      <h3>Main office — Guangzhou</h3>
+      <p class="muted">Room 621, Garden Building, 368 Huanshi East Road, Yuexiu District, Guangzhou, China</p>
+      <h3>Assembly line — Hong Kong</h3>
+      <p class="muted">H020, 3/F, Phase 2, Kwai Shing Industrial Building, 42–46 Tai Lin Pai Road, Kwai Chung, N.T., Hong Kong</p>
+      <p><strong>Phone / WhatsApp / WeChat</strong><br><a href="{{ whatsapp_url }}">+86 136 4066 6344</a></p>
+      <p><strong>Email</strong><br><a href="mailto:info@apextechnology.com">info@apextechnology.com</a></p>
+      <p><strong>Website</strong><br><a href="{{ website_url }}" target="_blank" rel="noopener">www.apextechnology.com</a></p>
+      <p><strong>Hours</strong><br>English-speaking export team in the Hong Kong time zone</p>
+      <p class="muted">OEM & ODM mobile accessories: tempered glass, Bluetooth audio, power banks, chargers & cables.</p>
+      <a class="btn btn-dark" href="{{ catalog_url }}" download="APEX-Company-Catalog.pdf">Download Company Catalog</a>
+      <div class="wechat-card">
+        <p><strong>WeChat — scan to chat</strong></p>
+        <img src="{% static 'img/wechat-qr.png' %}" alt="APEX WeChat QR code">
+        <p class="muted">Connect with our export team</p>
+      </div>
+    </aside>
+    <div class="quote-card reveal">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert {% if message.tags == 'success' %}alert-ok{% else %}alert-err{% endif %}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <div class="form-grid">
+          <div><label for="id_name">Name</label>{{ form.name }}</div>
+          <div><label for="id_email">Company email</label>{{ form.email }}</div>
+          <div><label for="id_country">Country or region</label>{{ form.country }}</div>
+          <div><label for="id_product_interest">Product interest</label>{{ form.product_interest }}</div>
+          <div class="full"><label for="id_quantity">Estimated quantity</label>{{ form.quantity }}</div>
+          <div class="full"><label for="id_message">Message</label>{{ form.message }}</div>
+        </div>
+        <p class="muted">Tell us the product, target price, quantity, specification and branding or packaging. We do not publish buyer details.</p>
+        <button class="btn btn-primary" type="submit">Submit Inquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

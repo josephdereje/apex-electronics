@@ -1,0 +1,39 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Quote requests | APEX Admin{% endblock %}
+{% block content %}
+<div class="admin-top">
+  <div>
+    <p class="eyebrow">Sales</p>
+    <h1>Quote requests</h1>
+  </div>
+</div>
+<table class="admin-table">
+  <thead>
+    <tr><th>Buyer</th><th>Interest</th><th>Quantity</th><th>Message</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    {% for inquiry in inquiries %}
+    <tr>
+      <td><strong>{{ inquiry.name }}</strong><div class="tiny">{{ inquiry.email }} · {{ inquiry.country }} · {{ inquiry.created_at }}</div></td>
+      <td>{{ inquiry.get_product_interest_display }}</td>
+      <td>{{ inquiry.quantity }}</td>
+      <td>{{ inquiry.message }}</td>
+      <td>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="inquiry_id" value="{{ inquiry.pk }}">
+          <select class="field-input" name="status">
+            {% for value, label in status_choices %}
+            <option value="{{ value }}" {% if inquiry.status == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+          <button class="btn btn-line" type="submit">Update</button>
+        </form>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No inquiries yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

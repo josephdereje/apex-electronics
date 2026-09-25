@@ -1,0 +1,44 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Product list | APEX Admin{% endblock %}
+{% block content %}
+<div class="admin-top">
+  <div>
+    <p class="eyebrow">APEX company catalog</p>
+    <h1>Product list</h1>
+    <p class="muted">Tempered glass, Bluetooth headphones, power banks, and chargers &amp; cables from the professional catalog. Upload more SKUs anytime.</p>
+  </div>
+  <a class="btn btn-primary" href="{% url 'dashboard_product_create' %}">Upload product</a>
+</div>
+<div class="filters">
+  <a class="chip {% if not active_category %}active{% endif %}" href="{% url 'dashboard_products' %}">All</a>
+  {% for category in categories %}
+  <a class="chip {% if active_category == category.slug %}active{% endif %}" href="?category={{ category.slug }}">{{ category.name }}</a>
+  {% endfor %}
+</div>
+<table class="admin-table">
+  <thead>
+    <tr><th>Image</th><th>Product</th><th>Category</th><th>MOQ</th><th>Lead time</th><th>Status</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% endif %}</td>
+      <td>
+        <strong>{{ product.name }}</strong>
+        <div class="tiny">{{ product.sku }}{% if product.is_featured %} · Featured{% endif %}</div>
+      </td>
+      <td>{{ product.category.name }}</td>
+      <td>{{ product.moq }}</td>
+      <td>{{ product.lead_time }}</td>
+      <td>{% if product.is_active %}Live{% else %}Hidden{% endif %}</td>
+      <td class="row-actions">
+        <a class="btn btn-line" href="{% url 'dashboard_product_edit' product.pk %}">Edit</a>
+        <a class="btn btn-line" href="{% url 'dashboard_product_delete' product.pk %}">Delete</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="7">No products uploaded yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

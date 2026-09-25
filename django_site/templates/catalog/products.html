@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Products | APEX Mobile Accessories{% endblock %}
+{% block description %}Four categories of mobile accessories manufactured to export quality standards, with private branding, packaging, and custom specifications.{% endblock %}
+{% block content %}
+<section class="page-hero">
+  <div class="container reveal">
+    <p class="eyebrow">Catalog</p>
+    <h1>Four catalog lines. Export quality. Your brand.</h1>
+    <p>Tempered glass, Bluetooth headphones, power banks, and chargers &amp; cables from the APEX company catalog. Every line supports private branding, packaging, and custom specifications.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ catalog_url }}" download="APEX-Company-Catalog.pdf">Download Company Catalog</a>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="filters reveal">
+      <a class="chip {% if not active_category %}active{% endif %}" href="{% url 'products' %}">All products</a>
+      {% for category in categories %}
+      <a class="chip {% if active_category.slug == category.slug %}active{% endif %}" href="{% url 'products' %}?category={{ category.slug }}">{{ category.name }}</a>
+      {% endfor %}
+    </div>
+    <div class="product-grid">
+      {% for product in products %}
+      <a class="product-card reveal" href="{% url 'product_detail' product.slug %}">
+        <div class="thumb">{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% endif %}</div>
+        <div class="body">
+          <span class="badge">{{ product.category.name }}</span>
+          <h3>{{ product.name }}</h3>
+          <p class="muted">{{ product.short_description }}</p>
+          <div class="meta"><span>MOQ {{ product.moq }}</span><span>{{ product.lead_time }}</span></div>
+        </div>
+      </a>
+      {% empty %}
+      <p class="muted">No products in this category yet. Upload items from the admin panel.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

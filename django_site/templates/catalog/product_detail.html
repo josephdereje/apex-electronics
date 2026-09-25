@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }} | APEX{% endblock %}
+{% block description %}{{ product.short_description }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="container detail">
+    <div class="detail-media reveal">
+      {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% endif %}
+    </div>
+    <div class="detail-copy reveal">
+      <p class="eyebrow">{{ product.category.name }}</p>
+      <h1>{{ product.name }}</h1>
+      <p class="muted">{{ product.description }}</p>
+      <p><strong>SKU</strong> {{ product.sku }} · <strong>MOQ</strong> {{ product.moq }} · <strong>Lead time</strong> {{ product.lead_time }}</p>
+      {% if product.spec_list %}
+      <ul class="spec-list">
+        {% for spec in product.spec_list %}<li>{{ spec }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+      <a class="btn btn-primary" href="{% url 'contact' %}">Request a Quote</a>
+    </div>
+  </div>
+</section>
+{% if related %}
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <h2 class="reveal">Related products</h2>
+    <div class="product-grid">
+      {% for item in related %}
+      <a class="product-card reveal" href="{% url 'product_detail' item.slug %}">
+        <div class="thumb">{% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.name }}">{% endif %}</div>
+        <div class="body"><span class="badge">{{ item.category.name }}</span><h3>{{ item.name }}</h3></div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}
